@@ -1,0 +1,25 @@
+coverage:
+  precision: 2  # how many decimal places to display in the UI: 0 <= value <= 4
+  round: down  # how coverage is rounded: down/up/nearest
+  range: 70...90  # custom range of coverage colors from red -> yellow -> green
+
+  status:
+    project:  # measuring the overall project coverage
+      examples:
+        flags: examples
+      src:
+        flags: src
+      default: off  # context, you can create multiple ones with custom titles
+
+flags:
+  examples:
+    paths:
+      - examples/
+    carryforward: true
+  src:
+    paths:
+      - china_beancount_importers/
+    carryforward: true
+
+comment:
+  show_carryforward_flags: true

@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+    paths-ignore:
+      - docs/**
+      - readme.md
+      - .gitignoree
+      - .pre-commit-config.yaml
+      - .chglog/**
+  pull_request: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.6', '3.7', '3.8']
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - uses: Trim21/setup-poetry@dist/v1
+
+      - uses: Trim21/install-poetry-project@dist/v1
+
+      - name: test
+        run: coverage run -m pytest
+
+      - run: bash <(curl -s https://codecov.io/bash) -F ${PYTHON//./}
+        env:
+          PYTHON: ${{ matrix.python }}
