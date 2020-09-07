@@ -13,6 +13,8 @@ Welcome to china-beancount-importers' documentation!
     :maxdepth: 2
     :caption: Contents:
 
+    wechat.rst
+
 Indices and tables
 ==================
 

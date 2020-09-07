@@ -21,7 +21,7 @@ class WechatImporter(importer.ImporterProtocol):
     def __init__(self, account="Assets:WeChat", account_dict: Dict = None):
         """
 
-        :param account: 微信本身的账户
+        :param account: 微信零钱账户
         :param account_dict: 支付方式和beancount账户的对应
         """
         self.account = account
