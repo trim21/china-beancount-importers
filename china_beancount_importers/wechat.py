@@ -59,7 +59,7 @@ class WechatImporter(importer.ImporterProtocol):
         with open(file.name, encoding="utf-8") as f:
             for _ in range(16):
                 next(f)
-            for index, row in enumerate(csv.DictReader(f)):
+            for index, row in enumerate(reversed(list(csv.DictReader(f)))):
                 flag = flags.FLAG_WARNING
                 dt = parse(row["交易时间"])
                 meta = data.new_metadata(
