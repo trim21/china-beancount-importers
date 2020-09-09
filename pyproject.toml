@@ -4,7 +4,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = "china-beancount-importers"
-version = "0.0.1"
+version = "0.0.2"
 description = "A set of importers maybe useful for you in China."
 authors = ["Trim21 <i@trim21.me>"]
 license = "MIT"
