@@ -65,11 +65,6 @@ repos:
         args: [--max-line-length=88]
         files: \.rst$
 
-  - repo: https://github.com/Trim21/poetry-check-lock.git
-    rev: 63621580c70f106fd07748c262b6e08fef886ecc  # frozen: v0.0.3
-    hooks:
-      - id: poetry-check-lock
-
   - repo: https://github.com/psf/black
     rev: e66be67b9b6811913470f70c28b4d50f94d05b22  # frozen: 20.8b1
     hooks:
