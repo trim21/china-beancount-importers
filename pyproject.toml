@@ -12,7 +12,7 @@ repository = 'https://github.com/Trim21/china-beancount-importers'
 packages = [{ include = 'china_beancount_importers' }]
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.7"
 beancount = '>=2.3.0,<3.0.0,!=2.3.1'
 
 [tool.poetry.dev-dependencies]
