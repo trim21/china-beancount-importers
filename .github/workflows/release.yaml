@@ -32,7 +32,6 @@ jobs:
 
       - name: Set up Go
         uses: actions/setup-go@v2
-      - run: echo "::add-path::$(go env GOPATH)/bin"
 
       - run: go get -u github.com/git-chglog/git-chglog/cmd/git-chglog
 
