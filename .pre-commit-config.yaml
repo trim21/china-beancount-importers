@@ -1,88 +1,38 @@
-default_stages: [commit]
+exclude: 'tests/fixtures/.*'
 
 repos:
-  - repo: https://github.com/Trim21/pre-commit-hooks
-    rev: c37e29c1e823c5ce25cac879a0aa7fd63d387c25  # frozen: v0.0.1
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    # uv version.
+    rev: 0.6.3
     hooks:
-      - id: yamlfmt
+      - id: uv-lock
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: e1668fe86af3810fbca72b8653fe478e66a0afdc  # frozen: v3.2.0
+    rev: v5.0.0
     hooks:
       - id: check-case-conflict
-        exclude: .*\.csv
       - id: check-ast
-        exclude: .*\.csv
       - id: check-builtin-literals
-        exclude: .*\.csv
-      - id: check-byte-order-marker
-        exclude: .*\.csv
       - id: check-toml
       - id: check-yaml
       - id: check-json
       - id: check-docstring-first
       - id: check-merge-conflict
-        exclude: .*\.csv
-      - id: check-added-large-files  # check for file bigger than 500kb
-        exclude: .*\.csv
+      - id: check-added-large-files # check for file bigger than 500kb
       - id: debug-statements
       - id: trailing-whitespace
-        exclude: .*\.csv
       - id: mixed-line-ending
         args: [--fix=lf]
-        exclude: .*\.csv
       - id: end-of-file-fixer
-        exclude: .*\.csv
-      - id: fix-encoding-pragma
-        args: [--remove]
+      - id: fix-byte-order-marker
 
-  - repo: https://github.com/timothycrosley/isort
-    rev: 377d260ffa6f746693f97b46d95025afc4bd8275  # frozen: 5.4.2
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.9
     hooks:
-      - id: isort
-
-  - repo: https://github.com/asottile/pyupgrade
-    rev: f766c29ec4bb6cf2674b81959871e59d5400380a  # frozen: v2.7.2
-    hooks:
-      - id: pyupgrade
-        args: [--py36-plus]
-
-  - repo: https://github.com/myint/autoflake
-    rev: 7a53fdafc82c33f446915b60fcac947c51279260  # frozen: v1.4
-    hooks:
-      - id: autoflake
-        args:
-          - --in-place
-          - --remove-unused-variables
-          - --remove-all-unused-imports
-          - --expand-star-imports
-
-  - repo: https://github.com/PyCQA/doc8.git
-    rev: db40a1a30521b00e0c47b5095d9dcef39412919d  # frozen: 0.9.0a0
-    hooks:
-      - id: doc8
-        name: Check rst file
-        args: [--max-line-length=88]
-        files: \.rst$
+      - id: ruff
+        args: [--fix, --fixable=ALL]
 
   - repo: https://github.com/psf/black
-    rev: 712f8b3
+    rev: "25.1.0"
     hooks:
       - id: black
-
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: debe2cede5b9515024c1184059c6aac811ea3adc  # frozen: v2.1.0
-    hooks:
-      - id: commitizen
-        stages: [commit-msg]
-
-  - repo: local
-    hooks:
-      - id: flake8
-        name: flake8
-        entry: flake8
-        language: system
-        types: [python]
-        args:
-          - --ignore=C0103,C0111,R0903,W503,W504,C812,C813,C815,C819,B008,E265,E501
-          - --max-line-length=88

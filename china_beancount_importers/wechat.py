@@ -1,5 +1,5 @@
-"""Importer for 微信
-"""
+"""Importer for 微信"""
+
 import re
 import csv
 import datetime

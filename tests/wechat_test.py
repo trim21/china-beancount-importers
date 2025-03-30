@@ -28,7 +28,11 @@ def test_extract_(tmpdir):
     with open(csv_path, "w", encoding="utf-8", newline="") as f:
         f.write("\n" * 16)
         writer = csv.writer(f)
-        writer.writerow("交易时间,交易类型,交易对方,商品,收/支,金额(元),支付方式,当前状态,交易单号,商户单号,备注".split(","))
+        writer.writerow(
+            "交易时间,交易类型,交易对方,商品,收/支,金额(元),支付方式,当前状态,交易单号,商户单号,备注".split(
+                ","
+            )
+        )
         writer.writerow(
             [
                 "2020-09-06 23:19:24",
