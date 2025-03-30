@@ -1,14 +1,13 @@
 import csv
-from os import path
 from decimal import Decimal
+from os import path
 from os.path import abspath, normpath
 
-from beancount.ingest import cache
-from beancount.core.data import Amount
-from beancount.ingest.extract import extract_from_file
+from beancount.core.amount import Amount
+from beangulp.extract import extract_from_file
 
-from tests.utils import get_importer
 from china_beancount_importers.wechat import WechatImporter
+from tests.utils import get_importer
 
 
 def test_example_config():
@@ -19,11 +18,11 @@ def test_example_config():
 def test_extract_as_expected():
     importer = get_importer("examples/wechat.import")
     fs = normpath(abspath("tests/fixtures/wechat/微信支付账单(20200830-20200906).csv"))
-    extracted = extract_from_file(fs, importer)
+    extracted = extract_from_file(importer, fs, [])
     assert len(extracted) == 7, "should extract 17 entries from file"
 
 
-def test_extract_(tmpdir):
+def test_extract(tmpdir):
     csv_path = path.join(tmpdir, "微信支付账单(20200830-20200906).csv")
     with open(csv_path, "w", encoding="utf-8", newline="") as f:
         f.write("\n" * 16)
@@ -35,7 +34,7 @@ def test_extract_(tmpdir):
         )
         writer.writerow(
             [
-                "2020-09-06 23:19:24",
+                "2020.9.6 23:19",
                 "零钱充值",
                 "招商银行(1111)",
                 "/",
@@ -48,12 +47,11 @@ def test_extract_(tmpdir):
                 "/",
             ]
         )
-    file = cache._FileMemo(csv_path)
     importer: WechatImporter = get_importer("examples/wechat.import")
-    entries = importer.extract(file)
+    entries = importer.extract(csv_path)
     assert len(entries) == 1
     txn = entries[0]
-    assert [x.account == importer.account for x in txn.postings] == [True, False]
+    assert [x.account == importer.account() for x in txn.postings] == [True, False]
     assert [x.units for x in txn.postings] == [
         Amount(Decimal(1), "CNY"),
         Amount(Decimal(-1), "CNY"),
