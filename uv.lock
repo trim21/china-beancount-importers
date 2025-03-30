@@ -3,15 +3,6 @@ revision = 1
 requires-python = ">=3.9, <4"
 
 [[package]]
-name = "attrs"
-version = "25.3.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/5a/b0/1367933a8532ee6ff8d63537de4f1177af4bff9f3e829baf7331f595bb24/attrs-25.3.0.tar.gz", hash = "sha256:75d7cefc7fb576747b2c81b4442d4d4a1ce0900973527c011d1030fd3bf4af1b", size = 812032 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/77/06/bb80f5f86020c4551da315d78b3ab75e8228f89f0162f2c3a819e407941a/attrs-25.3.0-py3-none-any.whl", hash = "sha256:427318ce031701fea540783410126f03899a97ffc6f61596ad581ac2e40e3bc3", size = 63815 },
-]
-
-[[package]]
 name = "beancount"
 version = "3.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -120,8 +111,8 @@ requires-dist = [
 dev = [
     { name = "coverage", specifier = "==6.5.0" },
     { name = "mypy", specifier = ">=1.15.0" },
-    { name = "pytest", specifier = "==7.2.0" },
-    { name = "pytest-github-actions-annotate-failures", specifier = "==0.1.7" },
+    { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-github-actions-annotate-failures", specifier = ">=0.3.0" },
 ]
 
 [[package]]
@@ -378,10 +369,9 @@ wheels = [
 
 [[package]]
 name = "pytest"
-version = "7.2.0"
+version = "8.3.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "attrs" },
     { name = "colorama", marker = "sys_platform == 'win32'" },
     { name = "exceptiongroup", marker = "python_full_version < '3.11'" },
     { name = "iniconfig" },
@@ -389,21 +379,21 @@ dependencies = [
     { name = "pluggy" },
     { name = "tomli", marker = "python_full_version < '3.11'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0b/21/055f39bf8861580b43f845f9e8270c7786fe629b2f8562ff09007132e2e7/pytest-7.2.0.tar.gz", hash = "sha256:c4014eb40e10f11f355ad4e3c2fb2c6c6d1919c73f3b5a433de4708202cade59", size = 1300608 }
+sdist = { url = "https://files.pythonhosted.org/packages/ae/3c/c9d525a414d506893f0cd8a8d0de7706446213181570cdbd766691164e40/pytest-8.3.5.tar.gz", hash = "sha256:f4efe70cc14e511565ac476b57c279e12a855b11f48f212af1080ef2263d3845", size = 1450891 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/67/68/a5eb36c3a8540594b6035e6cdae40c1ef1b6a2bfacbecc3d1a544583c078/pytest-7.2.0-py3-none-any.whl", hash = "sha256:892f933d339f068883b6fd5a459f03d85bfcb355e4981e146d2c7616c21fef71", size = 316791 },
+    { url = "https://files.pythonhosted.org/packages/30/3d/64ad57c803f1fa1e963a7946b6e0fea4a70df53c1a7fed304586539c2bac/pytest-8.3.5-py3-none-any.whl", hash = "sha256:c69214aa47deac29fad6c2a4f590b9c4a9fdb16a403176fe154b79c0b4d4d820", size = 343634 },
 ]
 
 [[package]]
 name = "pytest-github-actions-annotate-failures"
-version = "0.1.7"
+version = "0.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytest" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/07/2f/c203a7d8df92453fea36e0135d47e5b47b6bf920b7d5ff388f31fdef0292/pytest-github-actions-annotate-failures-0.1.7.tar.gz", hash = "sha256:c6af8f9d13f1f09ef4c104a30875a4975db131ddbba979c8e48fdc456c8dde1f", size = 5835 }
+sdist = { url = "https://files.pythonhosted.org/packages/39/d4/c54ee6a871eee4a7468e3a8c0dead28e634c0bc2110c694309dcb7563a66/pytest_github_actions_annotate_failures-0.3.0.tar.gz", hash = "sha256:d4c3177c98046c3900a7f8ddebb22ea54b9f6822201b5d3ab8fcdea51e010db7", size = 11248 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7e/15/669aba06ec65b951d6856f9ea14a1c19dc650c4993d02eae341dc958513a/pytest_github_actions_annotate_failures-0.1.7-py2.py3-none-any.whl", hash = "sha256:c4a7346d1d95f731a6b53e9a45f10ca56593978149266dd7526876cce403ea38", size = 5037 },
+    { url = "https://files.pythonhosted.org/packages/6d/73/7b0b15cb8605ee967b34aa1d949737ab664f94e6b0f1534e8339d9e64ab2/pytest_github_actions_annotate_failures-0.3.0-py3-none-any.whl", hash = "sha256:41ea558ba10c332c0bfc053daeee0c85187507b2034e990f21e4f7e5fef044cf", size = 6030 },
 ]
 
 [[package]]

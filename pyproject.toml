@@ -16,8 +16,8 @@ urls.repository = 'https://github.com/Trim21/china-beancount-importers'
 dev = [
   # tests
   "coverage ==6.5.0",
-  "pytest ==7.2.0",
-  "pytest-github-actions-annotate-failures ==0.1.7",
+  "pytest>=8.3.5",
+  "pytest-github-actions-annotate-failures>=0.3.0",
   # lint
   "mypy>=1.15.0",
 ]
