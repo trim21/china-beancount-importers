@@ -22,7 +22,7 @@ docs = [
 [dependency-groups]
 dev = [
   # tests
-  "coverage ==6.5.0",
+  "coverage ==7.7.1",
   "pytest>=8.3.5",
   "pytest-github-actions-annotate-failures>=0.3.0",
   # lint
