@@ -1,14 +1,14 @@
 import csv
-from os import path
 from decimal import Decimal
+from os import path
 from os.path import abspath, normpath
 
-from beangulp import cache
 from beancount.core.amount import Amount
+from beangulp import cache
 from beangulp.extract import extract_from_file
 
-from tests.utils import get_importer
 from china_beancount_importers.wechat import WechatImporter
+from tests.utils import get_importer
 
 
 def test_example_config():

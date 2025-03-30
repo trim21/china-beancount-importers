@@ -1,17 +1,16 @@
 """Importer for 微信"""
 
-import re
 import csv
 import datetime
+import re
 from os import path
 from typing import Dict
 
 from beancount.core import data, flags
-from dateutil.parser import parse
-
 from beancount.core.amount import Amount
 from beancount.core.number import D
 from beangulp import ImporterProtocol
+from dateutil.parser import parse
 
 _COMMENTS_STR = "收款方备注:二维码收款付款方留言:"
 
