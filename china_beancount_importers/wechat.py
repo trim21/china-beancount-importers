@@ -1,5 +1,7 @@
 """Importer for 微信"""
 
+from __future__ import annotations
+
 import csv
 import datetime
 import re
