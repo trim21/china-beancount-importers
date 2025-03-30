@@ -13,13 +13,13 @@
     {
       "groupName": "deps-docs",
       "semanticCommitScope": "docs",
-      "packagePatterns": [
-        "^sphinx"
-      ],
-      "rangeStrategy": "pin"
+      "rangeStrategy": "pin",
+      "matchPackageNames": [
+        "/^sphinx/"
+      ]
     },
     {
-      "depTypeList": [
+      "matchDepTypes": [
         "dev-dependencies"
       ],
       "rangeStrategy": "pin"
