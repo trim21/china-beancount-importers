@@ -20,7 +20,6 @@ dev = [
   "pytest-github-actions-annotate-failures ==0.1.7",
   # lint
   "mypy>=1.15.0",
-  'types-python-dateutil',
 ]
 
 [tool.pytest.ini_options]

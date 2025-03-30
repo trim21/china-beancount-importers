@@ -10,9 +10,13 @@ from beancount.core import data, flags
 from beancount.core.amount import Amount
 from beancount.core.number import D
 from beangulp import ImporterProtocol
-from dateutil.parser import parse
 
 _COMMENTS_STR = "收款方备注:二维码收款付款方留言:"
+
+
+def parse_time(s: str) -> datetime.datetime:
+    """parse date time from string '2020.9.6 16:59'"""
+    return datetime.datetime.strptime(s, "%Y.%m.%d %H:%M").astimezone()
 
 
 class WechatImporter(ImporterProtocol):
@@ -65,7 +69,7 @@ class WechatImporter(ImporterProtocol):
                 next(f)
             for index, row in enumerate(reversed(list(csv.DictReader(f)))):
                 flag = flags.FLAG_WARNING
-                dt = parse(row["交易时间"])
+                dt = parse_time(row["交易时间"])
                 meta = data.new_metadata(
                     file.name, index, kvlist={"time": str(dt.time())}
                 )
