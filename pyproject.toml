@@ -13,7 +13,11 @@ dependencies = ["beancount >=3.0.0,<4", "beangulp>=0.2.0"]
 urls.repository = 'https://github.com/Trim21/china-beancount-importers'
 
 [project.optional-dependencies]
-docs = ['sphinx==5.3.0', 'sphinx-rtd-theme==1.1.1', 'recommonmark==0.7.1']
+docs = [
+  'sphinx==5.3.0 ; python_version>="3.12"',
+  'sphinx-rtd-theme==1.1.1 ; python_version>="3.12"',
+  'recommonmark==0.7.1 ; python_version>="3.12"',
+]
 
 [dependency-groups]
 dev = [
