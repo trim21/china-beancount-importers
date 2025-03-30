@@ -58,9 +58,9 @@ class WechatImporter(ImporterProtocol):
             path.basename(file.name).split("-")[-1], "%Y%m%d).csv"
         ).date()
 
-    def extract(self, file, existing_entries=None) -> list[data.Directive]:
+    def extract(self, file, existing_entries=None) -> list[data.Transaction]:
         # Open the CSV file and create directives.
-        entries: list[data.Directive] = []
+        entries: list[data.Transaction] = []
         with open(file.name, encoding="utf-8") as f:
             for _ in range(16):
                 next(f)
