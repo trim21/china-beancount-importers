@@ -1,4 +1,5 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>Trim21/renovate-config",
     "github>Trim21/renovate-config:monthly"
@@ -13,14 +14,9 @@
     {
       "groupName": "deps-docs",
       "semanticCommitScope": "docs",
-      "packagePatterns": [
-        "^sphinx"
-      ],
-      "rangeStrategy": "pin"
-    },
-    {
-      "depTypeList": [
-        "dev-dependencies"
+      "matchPackageNames": [
+        "sphinx*",
+        "recommonmark"
       ],
       "rangeStrategy": "pin"
     }
