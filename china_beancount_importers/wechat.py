@@ -17,8 +17,8 @@ _COMMENTS_STR = "收款方备注:二维码收款付款方留言:"
 
 
 def parse_time(s: str) -> datetime.datetime:
-    """parse date time from string '2020.9.6 16:59'"""
-    return datetime.datetime.strptime(s, "%Y.%m.%d %H:%M").astimezone()
+    """parse date time from string '2023-08-30 20:46:41'"""
+    return datetime.datetime.strptime(s, "%Y-%m-%d %H:%M:%S").astimezone()
 
 
 class WechatImporter(Importer):
