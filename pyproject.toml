@@ -9,7 +9,10 @@ description = "A set of importers maybe useful for you in China."
 authors = [{ name = "Trim21", email = "i@trim21.me" }]
 license = "MIT"
 requires-python = '>=3.9,<4'
-dependencies = ["beancount >=2.3.0,<3.0.0,!=2.3.1"]
+dependencies = [
+    "beancount >=3.0.0,<4",
+    "beangulp>=0.2.0",
+]
 urls.repository = 'https://github.com/Trim21/china-beancount-importers'
 
 [dependency-groups]
@@ -20,8 +23,8 @@ dev = [
   "pytest-github-actions-annotate-failures ==0.1.7",
   # lint
   "mypy>=1.15.0",
+  'types-python-dateutil',
 ]
-
 
 [tool.pytest.ini_options]
 addopts = '-rav'

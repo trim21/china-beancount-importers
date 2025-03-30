@@ -8,17 +8,22 @@ from typing import Dict
 
 from beancount.core import data, flags
 from dateutil.parser import parse
-from beancount.ingest import importer
+
 from beancount.core.amount import Amount
 from beancount.core.number import D
+from beangulp import ImporterProtocol
 
 _COMMENTS_STR = "收款方备注:二维码收款付款方留言:"
 
 
-class WechatImporter(importer.ImporterProtocol):
+class WechatImporter(ImporterProtocol):
     """An importer for Wechat CSV files."""
 
-    def __init__(self, account="Assets:WeChat", account_dict: Dict = None):
+    def __init__(
+        self,
+        account: str = "Assets:WeChat",
+        account_dict: Dict | None = None,
+    ):
         """
 
         :param account: 微信零钱账户
@@ -53,9 +58,9 @@ class WechatImporter(importer.ImporterProtocol):
             path.basename(file.name).split("-")[-1], "%Y%m%d).csv"
         ).date()
 
-    def extract(self, file, existing_entries=None):
+    def extract(self, file, existing_entries=None) -> list[data.Directive]:
         # Open the CSV file and create directives.
-        entries = []
+        entries: list[data.Directive] = []
         with open(file.name, encoding="utf-8") as f:
             for _ in range(16):
                 next(f)
