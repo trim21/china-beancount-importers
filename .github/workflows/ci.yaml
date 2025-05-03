@@ -29,10 +29,9 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - uses: astral-sh/setup-uv@v6
-
+        with:
+          activate-environment: true
       - run: uv sync --locked
-
-      - run: echo .venv/bin/ >> $GITHUB_PATH
 
       - name: test
         run: coverage run -m pytest
