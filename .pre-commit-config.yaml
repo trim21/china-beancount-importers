@@ -3,7 +3,7 @@ exclude: "tests/fixtures/.*"
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.9.7
+    rev: 0.9.15
     hooks:
       - id: uv-lock
         args: [--check]
@@ -28,12 +28,12 @@ repos:
       - id: fix-byte-order-marker
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.4
+    rev: v0.14.8
     hooks:
       - id: ruff
         args: [--fix, --fixable=ALL]
 
   - repo: https://github.com/psf/black
-    rev: "25.9.0"
+    rev: "25.11.0"
     hooks:
       - id: black
