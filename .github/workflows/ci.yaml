@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  test:
+  test-matrix:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -36,3 +36,9 @@ jobs:
         run: coverage run -m pytest
 
       - uses: codecov/codecov-action@v5
+
+  test:
+    needs: ['test-matrix']
+    runs-on: ubuntu-slim
+    steps:
+      - run: echo 1
