@@ -8,7 +8,9 @@ on:
 jobs:
   release:
     runs-on: ubuntu-24.04
-
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -22,7 +24,7 @@ jobs:
 
       - run: uv publish
         env:
-          UV_PUBLISH_NO_ATTESTATIONS: '0'
+          UV_PUBLISH_NO_ATTESTATIONS: '1'
 
       - name: Get Previous Tag
         id: tag
