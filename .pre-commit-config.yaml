@@ -9,7 +9,7 @@ repos:
         always_run: true
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-case-conflict
       - id: check-ast
@@ -28,12 +28,12 @@ repos:
       - id: fix-byte-order-marker
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.4
+    rev: v0.15.0
     hooks:
       - id: ruff
         args: [--fix, --fixable=ALL]
 
   - repo: https://github.com/psf/black
-    rev: '25.1.0'
+    rev: '26.1.0'
     hooks:
       - id: black
