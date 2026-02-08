@@ -4,7 +4,7 @@ build-backend = "pdm.backend"
 
 [project]
 name = "china-beancount-importers"
-version = "0.0.7"
+version = "0.0.8"
 description = "A set of importers maybe useful for you in China."
 authors = [{ name = "Trim21", email = "trim21.me@gmail.com" }]
 license = "MIT"
