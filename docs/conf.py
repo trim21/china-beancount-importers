@@ -16,7 +16,7 @@
 from recommonmark.transform import AutoStructify
 
 project = "china-beancount-importers"
-copyright = "2020, Trim21 <trim21me@gmail.com>"
+copyright = "2020-2026, Trim21 <trim21me@gmail.com>"
 author = "Trim21 <trim21me@gmail.com>"
 
 # -- General configuration ---------------------------------------------------
