@@ -51,7 +51,10 @@ def test_extract(tmpdir):
     entries = importer.extract(csv_path)
     assert len(entries) == 1
     txn = entries[0]
-    assert [x.account == importer.account() for x in txn.postings] == [True, True],txn.postings
+    assert [x.account == importer.account() for x in txn.postings] == [
+        True,
+        True,
+    ], txn.postings
     assert [x.units for x in txn.postings] == [
         Amount(Decimal(1), "CNY"),
         Amount(Decimal(-1), "CNY"),
