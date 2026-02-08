@@ -27,8 +27,8 @@ repository = 'https://github.com/trim21/china-beancount-importers'
 
 [dependency-groups]
 docs = [
-  'sphinx==8.2.3; python_version>="3.12"',
-  'sphinx-rtd-theme==3.0.2; python_version>="3.12"',
+  'sphinx==9.1.0; python_version>="3.12"',
+  'sphinx-rtd-theme==3.1.0; python_version>="3.12"',
   'recommonmark==0.7.1 ; python_version>="3.12"',
 ]
 dev = [
