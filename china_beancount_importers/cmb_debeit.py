@@ -30,7 +30,7 @@ class Row:
 decoder = pydantic.TypeAdapter(Row)
 
 
-class CMB(Importer):
+class CMBDebeit(Importer):
     def __init__(self, account: str, currency: str = "CNY") -> None:
         self._account: str = account
         self._currency: str = currency

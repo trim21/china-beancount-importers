@@ -14,4 +14,4 @@
        ),
    ]
 
-.. autoclass:: china_beancount_importers.ccb_credit_pdf.CMB
+.. autoclass:: china_beancount_importers.ccb_credit_pdf.CCBCreditPdfImporter
