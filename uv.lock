@@ -85,19 +85,16 @@ wheels = [
 
 [[package]]
 name = "beangulp"
-version = "0.2.0"
-source = { registry = "https://pypi.org/simple" }
+version = "0.3.0.dev0"
+source = { git = "https://github.com/beancount/beangulp.git?rev=1f315a62afc5160bb1d62759451f3610186e293f#1f315a62afc5160bb1d62759451f3610186e293f" }
 dependencies = [
     { name = "beancount" },
     { name = "beautifulsoup4" },
     { name = "chardet" },
     { name = "click" },
+    { name = "deprecation" },
     { name = "lxml" },
     { name = "python-magic", marker = "sys_platform != 'win32'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/39/e6/5b3307d3035439f60da4372395edec8261852a083278fdbf3a96df0e6395/beangulp-0.2.0.tar.gz", hash = "sha256:5c908c45c62c07c4efadd0b03d3cdd145ad3b5e2bab5f5f277e0093a5891241a", size = 76846, upload-time = "2025-01-20T08:24:17.208Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a8/96/7783234d39c295ef92070dcc0b04451c217e7e907ca5ec28d33f008de339/beangulp-0.2.0-py3-none-any.whl", hash = "sha256:3177f57e433ae0b75352d052e7e20892791e6eab0d95cf07ca458b35b39788fe", size = 90311, upload-time = "2025-01-20T08:24:15.935Z" },
 ]
 
 [[package]]
@@ -336,7 +333,7 @@ docs = [
 [package.metadata]
 requires-dist = [
     { name = "beancount", specifier = ">=3.0.0,<4" },
-    { name = "beangulp", specifier = ">=0.2.0" },
+    { name = "beangulp", git = "https://github.com/beancount/beangulp.git?rev=1f315a62afc5160bb1d62759451f3610186e293f" },
     { name = "beautifulsoup4", specifier = ">=4.12.0" },
     { name = "pandas", extras = ["excel"] },
     { name = "pdfplumber", specifier = ">=0.11.0" },
@@ -556,6 +553,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/0f/d5/c66da9b79e5bdb124974bfe172b4daf3c984ebd9c2a06e2b8a4dc7331c72/defusedxml-0.7.1.tar.gz", hash = "sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69", size = 75520, upload-time = "2021-03-08T10:59:26.269Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/07/6c/aa3f2f849e01cb6a001cd8554a88d4c77c5c1a31c95bdf1cf9301e6d9ef4/defusedxml-0.7.1-py2.py3-none-any.whl", hash = "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61", size = 25604, upload-time = "2021-03-08T10:59:24.45Z" },
+]
+
+[[package]]
+name = "deprecation"
+version = "2.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "packaging" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5a/d3/8ae2869247df154b64c1884d7346d412fed0c49df84db635aab2d1c40e62/deprecation-2.1.0.tar.gz", hash = "sha256:72b3bde64e5d778694b0cf68178aed03d15e15477116add3fb773e581f9518ff", size = 173788, upload-time = "2020-04-20T14:23:38.738Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/02/c3/253a89ee03fc9b9682f1541728eb66db7db22148cd94f89ab22528cd1e1b/deprecation-2.1.0-py2.py3-none-any.whl", hash = "sha256:a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a", size = 11178, upload-time = "2020-04-20T14:23:36.581Z" },
 ]
 
 [[package]]

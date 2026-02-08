@@ -61,3 +61,5 @@ required-environments = [
   and sys_platform == 'linux'
   """,
 ]
+[tool.uv.sources]
+beangulp = { git = "https://github.com/beancount/beangulp.git", rev = "1f315a62afc5160bb1d62759451f3610186e293f" }
