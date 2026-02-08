@@ -22,9 +22,7 @@ jobs:
 
       - run: uv build --wheel .
 
-      - run: uv publish
-        env:
-          UV_PUBLISH_NO_ATTESTATIONS: '1'
+      - run: uv publish  --no-attestations
 
       - name: Get Previous Tag
         id: tag
