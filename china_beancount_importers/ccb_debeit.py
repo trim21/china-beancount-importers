@@ -1,7 +1,6 @@
 import dataclasses
 import datetime
 import fnmatch
-from collections.abc import Callable, Iterable
 from decimal import Decimal
 from pathlib import Path
 from typing import Annotated
@@ -26,10 +25,6 @@ class Row:
     posting: Annotated[str, pydantic.Field(alias="对方账号与户名")]
 
 
-def _default_extra_postings(_row: Row) -> Iterable[data.Posting]:
-    return ()
-
-
 decoder = pydantic.TypeAdapter(Row)
 
 
@@ -38,12 +33,9 @@ class CCBDebeitImporter(Importer):
         self,
         account: str,
         currency: str = "CNY",
-        *,
-        extra_postings: Callable[[Row], Iterable[data.Posting]] | None = None,
     ) -> None:
         self._account: str = account
         self._currency: str = currency
-        self._extra_postings = extra_postings or _default_extra_postings
 
     def account(self, filepath: str) -> data.Account:
         return self._account
@@ -105,7 +97,6 @@ class CCBDebeitImporter(Importer):
 
             postings = [
                 make_posting(account=account, units=amount),
-                *self._extra_postings(row),
             ]
 
             results.append(
