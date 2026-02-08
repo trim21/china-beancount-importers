@@ -8,8 +8,18 @@ version = "0.0.5"
 description = "A set of importers maybe useful for you in China."
 authors = [{ name = "Trim21", email = "trim21.me@gmail.com" }]
 license = "MIT"
-requires-python = '>=3.9,<4'
-dependencies = ["beancount >=3.0.0,<4", "beangulp>=0.2.0"]
+requires-python = '>=3.10,<4'
+dependencies = [
+  "beancount >=3.0.0,<4",
+  "beangulp>=0.2.0",
+  "beautifulsoup4>=4.12.0",
+  "pandas[excel]",
+  "pdfplumber>=0.11.0",
+  "pydantic>=2.6.0",
+  "python-dateutil>=2.9.0",
+  "rjieba<1",
+  "sslog>=0.0.0a1",
+]
 
 [project.urls]
 repository = 'https://github.com/trim21/china-beancount-importers'
@@ -25,6 +35,8 @@ dev = [
   "coverage ==7.8.0",
   "pytest>=8.3.5",
   "pytest-github-actions-annotate-failures>=0.3.0",
+  'pandas-stubs==3.0.0.260204 ; python_version>="3.11"',
+  'types-python-dateutil',
   # lint
   "mypy>=1.15.0",
 ]
