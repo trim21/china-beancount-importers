@@ -13,16 +13,16 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
-          python-version-file: ".python-version"
+          python-version-file: '.python-version'
       - uses: astral-sh/setup-uv@v7
         with:
-          activate-environment: "true"
+          activate-environment: 'true'
 
       - run: uv build --wheel .
 
       - run: uv publish
         env:
-          UV_PUBLISH_NO_ATTESTATIONS: "0"
+          UV_PUBLISH_NO_ATTESTATIONS: '0'
 
       - name: Get Previous Tag
         id: tag
@@ -44,5 +44,5 @@ jobs:
         run: gh release create "${GITHUB_REF}" --notes "${CHANGELOG}" $EXTRA_OPTS
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CHANGELOG: "${{ steps.changelog.outputs.changes }}"
+          CHANGELOG: '${{ steps.changelog.outputs.changes }}'
           EXTRA_OPTS: "${{ env.preRelease == 'true' && '-p' || '' }}"

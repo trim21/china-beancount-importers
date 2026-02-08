@@ -1,6 +1,13 @@
-exclude: "tests/fixtures/.*"
+exclude: 'tests/fixtures/.*'
 
 repos:
+  - repo: https://github.com/trim21/dprint-pre-commit
+    rev: 'v0.51.1.0'
+    hooks:
+      - id: dprint
+        pass_filenames: false
+        always_run: true
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
@@ -27,6 +34,6 @@ repos:
         args: [--fix, --fixable=ALL]
 
   - repo: https://github.com/psf/black
-    rev: "25.1.0"
+    rev: '25.1.0'
     hooks:
       - id: black

@@ -16,11 +16,11 @@ jobs:
     strategy:
       matrix:
         python:
-          - "3.10"
-          - "3.11"
-          - "3.12"
-          - "3.13"
-          - "3.14"
+          - '3.10'
+          - '3.11'
+          - '3.12'
+          - '3.13'
+          - '3.14'
     steps:
       - uses: actions/checkout@v6
 
@@ -30,7 +30,7 @@ jobs:
 
       - uses: astral-sh/setup-uv@v7
         with:
-          activate-environment: "true"
+          activate-environment: 'true'
 
       - run: uv sync --frozen
 

@@ -4,6 +4,10 @@
     "github>Trim21/renovate-config",
     "github>Trim21/renovate-config:monthly"
   ],
+  "labels": [
+    "ci:auto-merge",
+    "dependencies"
+  ],
   "separateMajorMinor": false,
   "separateMinorPatch": false,
   "rangeStrategy": "widen",
