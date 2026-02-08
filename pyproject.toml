@@ -8,6 +8,7 @@ version = "0.0.5"
 description = "A set of importers maybe useful for you in China."
 authors = [{ name = "Trim21", email = "trim21.me@gmail.com" }]
 license = "MIT"
+readme = "readme.md"
 requires-python = '>=3.10,<4'
 dependencies = [
   "beancount >=3.0.0,<4",
