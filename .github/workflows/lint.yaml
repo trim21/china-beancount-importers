@@ -23,7 +23,7 @@ jobs:
         with:
           activate-environment: "true"
 
-      - run: uv sync --locked
+      - run: uv sync --frozen
 
       - uses: liskin/gh-problem-matcher-wrap@v3
         with:
