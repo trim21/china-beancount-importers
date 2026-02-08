@@ -10,18 +10,19 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
-          python-version: "3.x"
-
-      - run: pipx run build
-
-      - uses: pypa/gh-action-pypi-publish@release/v1
+          python-version-file: ".python-version"
+      - uses: astral-sh/setup-uv@v7
         with:
-          password: ${{ secrets.PYPI_TOKEN }}
-          attestations: false
+          activate-environment: "true"
+
+      - run: uv build --wheel .
+
+      - run: uv publish
+        env:
+          UV_PUBLISH_NO_ATTESTATIONS: "0"
 
       - name: Get Previous Tag
         id: tag

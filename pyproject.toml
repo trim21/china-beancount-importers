@@ -1,25 +1,25 @@
 [build-system]
-requires = ["flit-core==3.12.0"]
-build-backend = "flit_core.buildapi"
+requires = ["pdm-backend<3"]
+build-backend = "pdm.backend"
 
 [project]
 name = "china-beancount-importers"
 version = "0.0.5"
 description = "A set of importers maybe useful for you in China."
-authors = [{ name = "Trim21", email = "i@trim21.me" }]
+authors = [{ name = "Trim21", email = "trim21.me@gmail.com" }]
 license = "MIT"
 requires-python = '>=3.9,<4'
 dependencies = ["beancount >=3.0.0,<4", "beangulp>=0.2.0"]
-urls.repository = 'https://github.com/Trim21/china-beancount-importers'
 
-[project.optional-dependencies]
+[project.urls]
+repository = 'https://github.com/trim21/china-beancount-importers'
+
+[dependency-groups]
 docs = [
   'sphinx==8.2.3; python_version>="3.12"',
   'sphinx-rtd-theme==3.0.2; python_version>="3.12"',
   'recommonmark==0.7.1 ; python_version>="3.12"',
 ]
-
-[dependency-groups]
 dev = [
   # tests
   "coverage ==7.8.0",
