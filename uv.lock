@@ -316,7 +316,6 @@ dependencies = [
     { name = "pydantic" },
     { name = "python-dateutil" },
     { name = "rjieba" },
-    { name = "sslog" },
 ]
 
 [package.dev-dependencies]
@@ -344,7 +343,6 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.6.0" },
     { name = "python-dateutil", specifier = ">=2.9.0" },
     { name = "rjieba", specifier = "<1" },
-    { name = "sslog", specifier = ">=0.0.0a1" },
 ]
 
 [package.metadata.requires-dev]
@@ -2150,31 +2148,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/3b/44/6716b257b0aa6bfd51a1b31665d1c205fb12cb5ad56de752dfa15657de2f/sphinxcontrib_serializinghtml-2.0.0.tar.gz", hash = "sha256:e9d912827f872c029017a53f0ef2180b327c3f7fd23c87229f7a8e8b70031d4d", size = 16080, upload-time = "2024-07-29T01:10:09.332Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/52/a7/d2782e4e3f77c8450f727ba74a8f12756d5ba823d81b941f1b04da9d033a/sphinxcontrib_serializinghtml-2.0.0-py3-none-any.whl", hash = "sha256:6e2cb0eef194e10c27ec0023bfeb25badbbb5868244cf5bc5bdc04e4464bf331", size = 92072, upload-time = "2024-07-29T01:10:08.203Z" },
-]
-
-[[package]]
-name = "sslog"
-version = "0.0.0a52"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "structlog" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c9/be/13fc5ee184a6117e276869fbdb51da0708d6ea8883e1941ee4151748ac0e/sslog-0.0.0a52.tar.gz", hash = "sha256:fc43ff0546bda79667a6231e22d44bb49ad2b7320861ecb03420dbea236ca75d", size = 5303, upload-time = "2025-02-06T15:43:29.156Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f7/2d/34c5732c2a9242312fc809f09a7e3d856320b7ebcb476678cc24e67fe45f/sslog-0.0.0a52-py3-none-any.whl", hash = "sha256:9085e86f59fc688620d427bd5238eea4a43163f0dde9b326376309a180356126", size = 7154, upload-time = "2025-02-06T15:43:27.388Z" },
-]
-
-[[package]]
-name = "structlog"
-version = "25.1.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/25/fe/578db23e17392a8693b45a7b7dc6985370f51dd937157def8ecc7b20930d/structlog-25.1.0.tar.gz", hash = "sha256:2ef2a572e0e27f09664965d31a576afe64e46ac6084ef5cec3c2b8cd6e4e3ad3", size = 1364973, upload-time = "2025-01-16T13:04:09.792Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/c1/14/e9aed6c820fa166e8a19a19e663e98bd5538004d68a70c5752458ca3656e/structlog-25.1.0-py3-none-any.whl", hash = "sha256:843fe4f254540329f380812cbe612e1af5ec5b8172205ae634679cd35a6d6321", size = 68921, upload-time = "2025-01-16T13:04:06.69Z" },
 ]
 
 [[package]]

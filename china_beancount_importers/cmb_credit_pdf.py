@@ -11,7 +11,6 @@ from beancount import Amount
 from beancount.core import data
 from beangulp import extract
 from beangulp.importer import Importer
-from sslog import logger
 
 from .utils import make_posting, make_transaction
 
@@ -238,9 +237,6 @@ class CMBCreditPdfImporter(Importer):
                         lines.append(text)
 
         parsed_rows = self._parse_rows(lines, year=year, month=month)
-
-        if not parsed_rows:
-            logger.warning("no transaction rows parsed from {}", filepath)
 
         for i, row in enumerate(parsed_rows):
             row_data = {

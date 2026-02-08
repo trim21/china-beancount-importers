@@ -19,7 +19,6 @@ dependencies = [
   "pydantic>=2.6.0",
   "python-dateutil>=2.9.0",
   "rjieba<1",
-  "sslog>=0.0.0a1",
 ]
 
 [project.urls]
