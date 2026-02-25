@@ -23,7 +23,9 @@ class CmbEmlImporter(Importer):
 
     def identify(self, filepath: str) -> bool:
         filename = path.basename(filepath)
-        return "招商银行信用卡电子账单" in filename and "eml" in filename
+        return filename.startswith("招商银行信用卡电子账单") and filename.endswith(
+            ".eml"
+        )
 
     def account(self, filepath: str) -> data.Account:
         return self.account_name
