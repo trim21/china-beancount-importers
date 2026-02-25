@@ -4,11 +4,11 @@ import datetime
 import decimal
 import fnmatch
 import io
-import re
 from pathlib import Path
 from typing import Annotated
 
 import pydantic
+import regex
 from beancount import Amount
 from beancount.core import data
 from beangulp import extract
@@ -29,20 +29,14 @@ class Row:
 
 
 decoder = pydantic.TypeAdapter(Row)
+_pattern = regex.compile(r"账\s+号: \[一卡通:\d{4}\*\*\*\*\*\*\*\*(\d{4})")
 
 
 def _parse_cmb_debit_last4_from_header(header_lines: list[str]) -> str:
     for line in header_lines:
-        if "账" in line and "号" in line:
-            digits = "".join(re.findall(r"\d", line))
-            if len(digits) >= 4:
-                return digits[-4:]
-
-    for line in header_lines:
-        if "一卡通" in line:
-            digits = "".join(re.findall(r"\d", line))
-            if len(digits) >= 4:
-                return digits[-4:]
+        m = _pattern.search(line)
+        if m is not None:
+            return m.group(1)
 
     header_preview = "".join(header_lines[:7])
     raise ValueError(
