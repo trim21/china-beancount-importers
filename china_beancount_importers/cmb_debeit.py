@@ -153,7 +153,3 @@ class CMBDebitImporter(Importer):
             )
 
         return list(reversed(results))
-
-
-# Backward-compatible alias (original spelling)
-CMBDebeit = CMBDebitImporter
