@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import datetime
+import fnmatch
 import re
 from pathlib import Path
 
@@ -60,12 +61,14 @@ class WechatImporter(Importer):
 
     def identify(self, filepath: str) -> bool:
         name = Path(filepath).name
-        return bool(_CSV_NAME_RE.match(name) or _XLSX_NAME_RE.match(name))
+        return fnmatch.fnmatch(name, "微信支付账单流水文件*.xlsx")
 
     def extract(
-        self, filepath: str, existing_entries: data.Entries | None = None
-    ) -> list[data.Transaction]:
-        entries: list[data.Transaction] = []
+        self,
+        filepath: str,
+        existing: data.Entries | None = None,
+    ) -> list[data.Directive]:
+        entries: list[data.Directive] = []
         suffix = Path(filepath).suffix.lower()
         if suffix in {".xlsx", ".xls"}:
             rows = _read_xlsx_rows(filepath)

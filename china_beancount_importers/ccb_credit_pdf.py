@@ -2,7 +2,6 @@ import dataclasses
 import datetime
 import decimal
 import re
-import sys
 from datetime import date
 from fnmatch import fnmatch
 from pathlib import Path
@@ -55,7 +54,6 @@ class CCBCreditPdfImporter(Importer):
 
     def identify(self, filepath: str) -> bool:
         p = Path(filepath)
-        print(p.name, file=sys.stderr)
         return fnmatch(p.name, "ccb-credit-*.pdf")
 
     def deduplicate(self, entries: data.Entries, existing: data.Entries) -> None:
