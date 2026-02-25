@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Annotated
 
 import pydantic
+import regex
 from beancount import Amount
 from beancount.core import data
 from beangulp import extract
@@ -28,15 +29,43 @@ class Row:
 
 
 decoder = pydantic.TypeAdapter(Row)
+_pattern = regex.compile(r"账\s+号: \[一卡通:\d{4}\*\*\*\*\*\*\*\*(\d{4})")
 
 
-class CMBDebeit(Importer):
-    def __init__(self, account: str, currency: str = "CNY") -> None:
-        self._account: str = account
+def _parse_cmb_debit_last4_from_header(header_lines: list[str]) -> str:
+    for line in header_lines:
+        m = _pattern.search(line)
+        if m is not None:
+            return m.group(1)
+
+    header_preview = "".join(header_lines[:7])
+    raise ValueError(
+        f"cannot parse card last4 from CMB debit header: {header_preview!r}"
+    )
+
+
+def _resolve_account_from_last4(account_map: dict[str, str], last4: str) -> str:
+    if last4 not in account_map:
+        known = ", ".join(sorted(account_map))
+        raise KeyError(f"card last4 '{last4}' not in account_map; known: {known}")
+    return account_map[last4]
+
+
+class CMBDebitImporter(Importer):
+    """
+    从PC端的招商银行专业版导出
+    """
+
+    def __init__(self, account_map: dict[str, str], currency: str = "CNY") -> None:
+        self._account_map: dict[str, str] = account_map
         self._currency: str = currency
 
     def account(self, filepath: str) -> data.Account:
-        return self._account
+        with open(filepath, encoding="utf-8-sig") as f:
+            header_lines = [next(f, "") for _ in range(7)]
+
+        last4 = _parse_cmb_debit_last4_from_header(header_lines)
+        return _resolve_account_from_last4(self._account_map, last4)
 
     def identify(self, filepath: str) -> bool:
         p = Path(filepath)
@@ -53,7 +82,13 @@ class CMBDebeit(Importer):
 
     def extract(self, filepath: str, existing: data.Entries) -> data.Entries:
         with open(filepath, encoding="utf-8-sig") as f:
-            lines = f.readlines()[7:-3]
+            all_lines = f.readlines()
+
+        header_lines = all_lines[:7]
+        lines = all_lines[7:-3]
+
+        last4 = _parse_cmb_debit_last4_from_header(header_lines)
+        account = _resolve_account_from_last4(self._account_map, last4)
 
         day_balance: dict[datetime.date, str] = {}
 
@@ -68,7 +103,7 @@ class CMBDebeit(Importer):
             meta = data.new_metadata(
                 filepath,
                 i,
-                kvlist={"time": row.time, "row": row_data},
+                kvlist={"time": row.time, "card_last4": last4, "row": row_data},
             )
 
             date = datetime.date(
@@ -84,7 +119,7 @@ class CMBDebeit(Importer):
 
             postings = [
                 make_posting(
-                    account=self._account,
+                    account=account,
                     units=Amount(number=amount, currency=self._currency),
                 )
             ]
@@ -93,9 +128,11 @@ class CMBDebeit(Importer):
                 day_balance[date] = row.balance
                 results.append(
                     data.Balance(
-                        meta=data.new_metadata(filepath, i, kvlist={"row": row_data}),
+                        meta=data.new_metadata(
+                            filepath, i, kvlist={"card_last4": last4, "row": row_data}
+                        ),
                         date=date + datetime.timedelta(days=1),
-                        account=self._account,
+                        account=account,
                         amount=Amount(decimal.Decimal(row.balance), "CNY"),
                         tolerance=None,
                         diff_amount=None,

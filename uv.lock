@@ -317,6 +317,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "python-calamine" },
     { name = "python-dateutil" },
+    { name = "regex" },
     { name = "rjieba" },
     { name = "xlrd" },
 ]
@@ -329,6 +330,7 @@ dev = [
     { name = "pytest" },
     { name = "pytest-github-actions-annotate-failures" },
     { name = "types-python-dateutil" },
+    { name = "types-regex" },
 ]
 docs = [
     { name = "recommonmark", marker = "python_full_version >= '3.12'" },
@@ -347,6 +349,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.6.0" },
     { name = "python-calamine" },
     { name = "python-dateutil", specifier = ">=2.9.0" },
+    { name = "regex", specifier = ">=2026.1.15" },
     { name = "rjieba", specifier = "<1" },
     { name = "xlrd" },
 ]
@@ -359,6 +362,7 @@ dev = [
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-github-actions-annotate-failures", specifier = ">=0.3.0" },
     { name = "types-python-dateutil" },
+    { name = "types-regex", specifier = ">=2026.2.19.20260221" },
 ]
 docs = [
     { name = "recommonmark", marker = "python_full_version >= '3.12'", specifier = "==0.7.1" },
@@ -2170,6 +2174,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/fe/41/4f8eb1ce08688a9e3e23709ed07089ccdeaf95b93745bfb768c6da71197d/types_python_dateutil-2.9.0.20260124.tar.gz", hash = "sha256:7d2db9f860820c30e5b8152bfe78dbdf795f7d1c6176057424e8b3fdd1f581af", size = 16596, upload-time = "2026-01-24T03:18:42.975Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/5a/c2/aa5e3f4103cc8b1dcf92432415dde75d70021d634ecfd95b2e913cf43e17/types_python_dateutil-2.9.0.20260124-py3-none-any.whl", hash = "sha256:f802977ae08bf2260142e7ca1ab9d4403772a254409f7bbdf652229997124951", size = 18266, upload-time = "2026-01-24T03:18:42.155Z" },
+]
+
+[[package]]
+name = "types-regex"
+version = "2026.2.19.20260221"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/dd/66bbc1afdff89254a9f42beeeb435256f3d8b85ab36500583cf2d7b1ede2/types_regex-2026.2.19.20260221.tar.gz", hash = "sha256:bbe7d01d7fdcdceda7bbe2b3e1350be79e9d758f61f98aa7b0481ccc55ce67cb", size = 13125, upload-time = "2026-02-21T03:55:24.882Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b3/09/12cc7d098cda15ac1197c161b6f1d705a76f0ba58039e02355317a25b89e/types_regex-2026.2.19.20260221-py3-none-any.whl", hash = "sha256:2b39b43e50d0052871fd692d9b3444b14ab06c783159c98b74fc4793a4ffbda7", size = 11127, upload-time = "2026-02-21T03:55:23.945Z" },
 ]
 
 [[package]]
