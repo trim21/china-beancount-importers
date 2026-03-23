@@ -56,9 +56,15 @@ class CMBDebitImporter(Importer):
     从PC端的招商银行专业版导出
     """
 
-    def __init__(self, account_map: dict[str, str], currency: str = "CNY") -> None:
+    def __init__(
+        self,
+        account_map: dict[str, str],
+        currency: str = "CNY",
+        strip_wechat_prefix: bool = False,
+    ) -> None:
         self._account_map: dict[str, str] = account_map
         self._currency: str = currency
+        self._strip_wechat_prefix = strip_wechat_prefix
 
     def account(self, filepath: str) -> data.Account:
         with open(filepath, encoding="utf-8-sig") as f:
@@ -139,16 +145,17 @@ class CMBDebitImporter(Importer):
                     )
                 )
 
+            description = row.description
+            if self._strip_wechat_prefix:
+                description = description.removeprefix("财付通-微信支付-")
+                description = description.removeprefix("财付通-")
+
             results.append(
                 make_transaction(
                     meta,
                     date,
-                    "*",
-                    row.description,
-                    None,
-                    data.EMPTY_SET,
-                    data.EMPTY_SET,
-                    postings,
+                    payee=row.description,
+                    postings=postings,
                 )
             )
 
