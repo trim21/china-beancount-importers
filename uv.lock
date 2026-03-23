@@ -329,7 +329,7 @@ wheels = [
 
 [[package]]
 name = "china-beancount-importers"
-version = "0.0.12"
+version = "0.0.13"
 source = { editable = "." }
 dependencies = [
     { name = "beancount" },
