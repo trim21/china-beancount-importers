@@ -154,7 +154,7 @@ class CMBDebitImporter(Importer):
                 make_transaction(
                     meta,
                     date,
-                    payee=row.description,
+                    narration=description,
                     postings=postings,
                 )
             )
