@@ -134,9 +134,7 @@ class CMBDebitImporter(Importer):
                 day_balance[date] = row.balance
                 results.append(
                     data.Balance(
-                        meta=data.new_metadata(
-                            filepath, i, kvlist={"card_last4": last4, "row": row_data}
-                        ),
+                        meta=data.new_metadata(filepath, i),
                         date=date + datetime.timedelta(days=1),
                         account=account,
                         amount=Amount(decimal.Decimal(row.balance), "CNY"),
