@@ -57,11 +57,14 @@ class WechatImporter(Importer):
     def __init__(
         self,
         account: str,
+        payment_method_mapping: dict[str, str] | None = None,
     ) -> None:
         """
         :param account: 微信零钱账户
+        :param payment_method_accounts: 支付方式到账户的映射，例如 {"招商银行(1111)": "Liabilities:CMB:CreditCard"}
         """
         self._account = account
+        self._payment_method_accounts = payment_method_mapping or {}
         self.default_set = frozenset({"wechat"})
         self.currency = "CNY"
 
@@ -107,7 +110,7 @@ class WechatImporter(Importer):
                 narration = narration.replace(_COMMENTS_STR, "")
             if narration == "/":
                 narration = ""
-            account_1 = self._account
+            account_1 = self._payment_method_accounts.get(account_1_text, self._account)
             flag = flags.FLAG_OKAY
 
             postings = [make_posting(account_1, amount)]
