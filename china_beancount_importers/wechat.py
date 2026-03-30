@@ -19,6 +19,7 @@ from .utils import make_posting, make_transaction
 _COMMENTS_STR = "收款方备注:二维码收款付款方留言:"
 _CSV_NAME_RE = re.compile(r"微信支付账单\(\d{8}-\d{8}\)\.csv")
 _XLSX_NAME_RE = re.compile(r"微信支付账单流水文件\(\d+-\d+\)_\d+\.xlsx")
+_TABLE_SEPARATOR = "------微信支付账单明细列表------"
 
 
 def parse_time(s: str) -> datetime.datetime:
@@ -28,16 +29,24 @@ def parse_time(s: str) -> datetime.datetime:
 
 def _read_csv_rows(filepath: str) -> list[dict[str, str]]:
     with open(filepath, encoding="utf-8") as f:
-        for _ in range(16):
-            next(f, None)
-        return list(csv.DictReader(f))
+        for line in f:
+            if _TABLE_SEPARATOR in line:
+                return list(csv.DictReader(f))
+        return []
 
 
 def _read_xlsx_rows(filepath: str) -> list[dict[str, str]]:
-    df = pd.read_excel(filepath, dtype=str).fillna("")
-    header: list[str] = df.values[15]
+    df = pd.read_excel(filepath, dtype=str, header=None).fillna("")
+    header_idx = None
+    for i, row in enumerate(df.values):
+        if _TABLE_SEPARATOR in str(row[0]):
+            header_idx = i + 1
+            break
+    if header_idx is None:
+        return []
+    header: list[str] = df.values[header_idx]
     rows: list[dict[str, str]] = []
-    for line in df.values[16:]:
+    for line in df.values[header_idx + 1 :]:
         rows.append({key: value for key, value in zip(header, line, strict=True)})
     return rows
 
