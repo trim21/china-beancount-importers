@@ -68,3 +68,12 @@ required-environments = [
 ]
 # [tool.uv.sources]
 # beangulp = { git = "https://github.com/beancount/beangulp.git", rev = "1f315a62afc5160bb1d62759451f3610186e293f" }
+
+[tool.mypy]
+cache_dir = ".venv/.cache/mypy/"
+
+[tool.pytest]
+cache_dir = ".venv/.cache/pytest/"
+
+[tool.ruff]
+cache-dir = ".venv/.cache/ruff/"
