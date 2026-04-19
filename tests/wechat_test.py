@@ -25,7 +25,8 @@ def test_extract_as_expected():
 def test_extract(tmpdir):
     csv_path = path.join(tmpdir, "微信支付账单(20200830-20200906).csv")
     with open(csv_path, "w", encoding="utf-8", newline="") as f:
-        f.write("\n" * 16)
+        f.write("\n" * 15)
+        f.write("------微信支付账单明细列表------\n")
         writer = csv.writer(f)
         writer.writerow(
             "交易时间,交易类型,交易对方,商品,收/支,金额(元),支付方式,当前状态,交易单号,商户单号,备注".split(
