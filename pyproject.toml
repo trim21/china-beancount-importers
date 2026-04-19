@@ -69,8 +69,8 @@ required-environments = [
 [tool.mypy]
 cache_dir = ".venv/.cache/mypy/"
 
-[tool.pytest]
-addopts = '-rav'
+[tool.pytest.ini_options]
+addopts = ['-rav']
 cache_dir = ".venv/.cache/pytest/"
 
 [tool.ruff]
