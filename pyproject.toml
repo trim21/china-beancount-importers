@@ -1,5 +1,5 @@
 [build-system]
-requires = ["pdm-backend==2.4.7"]
+requires = ["pdm-backend==2.4.8"]
 build-backend = "pdm.backend"
 
 [project]
@@ -36,7 +36,7 @@ docs = [
 ]
 dev = [
   # tests
-  "coverage ==7.13.4",
+  "coverage ==7.13.5",
   "pytest>=8.3.5",
   "pytest-github-actions-annotate-failures>=0.3.0",
   'pandas-stubs==3.0.0.260204 ; python_version>="3.11"',
@@ -45,9 +45,6 @@ dev = [
   "mypy>=1.15.0",
   "types-regex>=2026.2.19.20260221",
 ]
-
-[tool.pytest.ini_options]
-addopts = '-rav'
 
 [tool.ruff.lint]
 extend-select = ['I']
@@ -72,7 +69,8 @@ required-environments = [
 [tool.mypy]
 cache_dir = ".venv/.cache/mypy/"
 
-[tool.pytest]
+[tool.pytest.ini_options]
+addopts = ['-rav']
 cache_dir = ".venv/.cache/pytest/"
 
 [tool.ruff]
