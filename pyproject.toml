@@ -46,9 +46,6 @@ dev = [
   "types-regex>=2026.2.19.20260221",
 ]
 
-[tool.pytest.ini_options]
-addopts = '-rav'
-
 [tool.ruff.lint]
 extend-select = ['I']
 
@@ -73,6 +70,7 @@ required-environments = [
 cache_dir = ".venv/.cache/mypy/"
 
 [tool.pytest]
+addopts = '-rav'
 cache_dir = ".venv/.cache/pytest/"
 
 [tool.ruff]
