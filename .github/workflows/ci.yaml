@@ -35,7 +35,7 @@ jobs:
       - name: test
         run: coverage run -m pytest
 
-      - uses: codecov/codecov-action@v6
+      - uses: codecov/codecov-action@v7
 
   test:
     needs: ['test-matrix']
