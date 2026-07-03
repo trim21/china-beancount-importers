@@ -1,5 +1,5 @@
 [build-system]
-requires = ["pdm-backend==2.4.8"]
+requires = ["pdm-backend==2.4.9"]
 build-backend = "pdm.backend"
 
 [project]
