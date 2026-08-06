@@ -15,6 +15,12 @@ from beangulp.importer import Importer
 from .utils import make_posting, make_transaction
 
 DATE_TOKEN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+_LEGACY_DATA_LINE_RE = re.compile(
+    r"^(\d{8})\s+(\d{8})\s+(\d{4})\s+"
+    r"(\S+?)/([-\d,.]+)\s+"
+    r"(\S+?)/([-\d,.]+)"
+    r"(?:\s+(.*))?$"
+)
 
 
 @dataclasses.dataclass(frozen=True, slots=True, kw_only=True)
@@ -63,6 +69,15 @@ class CCBCreditPdfImporter(Importer):
             existing,
             window,
             self.cmp,
+        )
+
+    def _is_legacy_header_line(self, text: str) -> bool:
+        # Legacy layout: 交易日 记账日 卡号后四位 交易币种/金额 结算币种/金额 交易描述
+        return (
+            "交易日" in text
+            and "记账日" in text
+            and "交易描述" in text
+            and "交易币种/金额" in text
         )
 
     def _is_header_line(self, text: str) -> bool:
@@ -118,6 +133,14 @@ class CCBCreditPdfImporter(Importer):
         )
 
     def _extract_records(self, lines: list[str]) -> list[Record]:
+        for i, text in enumerate(lines):
+            if self._is_legacy_header_line(text):
+                return self._extract_records_legacy(lines[i + 1 :])
+            if self._is_header_line(text):
+                return self._extract_records_new(lines[i:])
+        return []
+
+    def _extract_records_new(self, lines: list[str]) -> list[Record]:
         records: list[Record] = []
         in_table = False
 
@@ -142,13 +165,78 @@ class CCBCreditPdfImporter(Importer):
 
         return records
 
+    def _extract_records_legacy(self, lines: list[str]) -> list[Record]:
+        records: list[Record] = []
+        pending_prefix: list[str] = []
+        i = 0
+
+        while i < len(lines):
+            if lines[i].startswith("人民币账户"):
+                i += 1
+                continue
+
+            m = _LEGACY_DATA_LINE_RE.match(lines[i])
+            if m:
+                data_line = lines[i]
+                groups = m.groups()
+                trade_text, booking_text, card_last4 = groups[0], groups[1], groups[2]
+                trans_currency, trans_amount = groups[3], groups[4]
+                settlement_currency, settlement_amount = groups[5], groups[6]
+                inline_desc = (groups[7] or "").strip()
+
+                if inline_desc:
+                    description = inline_desc
+                else:
+                    # Description continues on the single line right after the
+                    # data line (or spans the pending prefix lines).
+                    suffix = ""
+                    if i + 1 < len(lines) and not _LEGACY_DATA_LINE_RE.match(
+                        lines[i + 1]
+                    ):
+                        suffix = lines[i + 1]
+                        i += 1  # skip suffix line
+
+                    description = "".join(pending_prefix) + suffix
+
+                description = description.strip()
+                pending_prefix = []
+
+                if description:
+                    records.append(
+                        Record(
+                            trade_date=datetime.date(
+                                int(trade_text[:4]),
+                                int(trade_text[4:6]),
+                                int(trade_text[6:8]),
+                            ),
+                            booking_date=datetime.date(
+                                int(booking_text[:4]),
+                                int(booking_text[4:6]),
+                                int(booking_text[6:8]),
+                            ),
+                            card_last4=card_last4,
+                            description=description,
+                            trans_currency=trans_currency,
+                            trans_amount=_parse_amount_token(trans_amount),
+                            settlement_currency=settlement_currency,
+                            settlement_amount=_parse_amount_token(settlement_amount),
+                            raw_line=data_line,
+                        )
+                    )
+            else:
+                pending_prefix.append(lines[i])
+
+            i += 1
+
+        return records
+
     def extract(self, filepath: str, existing: data.Entries) -> data.Entries:
         results: list[data.Directive] = []
 
         lines: list[str] = []
         with pdfplumber.open(filepath) as pdf:
             filename = Path(filepath).name
-            match = re.search(r"(\d{4})(\d{2})\.pdf$", filename)
+            match = re.search(r"ccb-credit-(\d{4})-?(\d{2})", filename)
             if match is None:
                 raise ValueError(f"cannot infer year-month from filepath: {filepath!r}")
             year, month = match.groups()

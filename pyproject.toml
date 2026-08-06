@@ -41,6 +41,9 @@ dev = [
   "pytest-github-actions-annotate-failures>=0.3.0",
   'pandas-stubs==3.0.5.260730; python_version>="3.11"',
   'types-python-dateutil',
+  # test fixtures
+
+  "xlwt>=1.3",
   # lint
   "mypy>=1.15.0",
   "types-regex>=2026.2.19.20260221",
