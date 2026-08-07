@@ -142,8 +142,7 @@ class CMBCreditPdfImporter(Importer):
                 continue
 
             if (
-                text.startswith("本期还款总额")
-                or text.startswith("本期应还金额")
+                text.startswith(("本期还款总额", "本期应还金额"))
                 or "Current Balance" in text
                 or "New Balance" in text
             ):
