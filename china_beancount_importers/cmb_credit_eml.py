@@ -67,9 +67,9 @@ class CmbEmlImporter(Importer):
             if trade_date == "" or payee == "消费分期":
                 trade_date = tds[2].text.strip()
 
-            date = datetime.datetime.strptime(
-                str(transaction_date.year) + trade_date, "%Y%m%d"
-            ).date()
+            date = datetime.date(
+                transaction_date.year, int(trade_date[:2]), int(trade_date[2:])
+            )
 
             narration = "-".join(full_descriptions[1:])
             real_currency = "CNY"

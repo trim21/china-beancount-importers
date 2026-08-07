@@ -10,7 +10,7 @@ T = TypeVar("T")
 
 def cast_checked(t: type[T], val: object) -> T:
     if not isinstance(val, t):
-        raise TypeError("expecting type {}, got {!r} instead".format(t, val))
+        raise TypeError(f"expecting type {t}, got {val!r} instead")
     return val
 
 

@@ -90,8 +90,7 @@ class CCBCreditPdfImporter(Importer):
         return (
             text == "承前页"
             or "接下页" in text
-            or text.startswith("T-Date P-Date")
-            or text.startswith("[人民币账户]")
+            or text.startswith(("T-Date P-Date", "[人民币账户]"))
             or "上期账单余额" in text
         )
 
