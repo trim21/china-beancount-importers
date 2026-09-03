@@ -36,7 +36,7 @@ docs = [
 ]
 dev = [
   # tests
-  "coverage ==7.15.3",
+  "coverage ==7.16.0",
   "pytest>=8.3.5",
   "pytest-github-actions-annotate-failures>=0.3.0",
   'pandas-stubs==3.0.5.260730; python_version>="3.11"',
